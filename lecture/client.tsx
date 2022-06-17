@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-import GuGuDanClass from './GuGuDanClass';
+import WordRelay from './WordRelay';
 
-ReactDOM.render(<GuGuDanClass />, document.querySelector('#root'));
+ReactDOM.render(<WordRelay />, document.querySelector('#root'));
