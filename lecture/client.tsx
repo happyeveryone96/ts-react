@@ -1,6 +1,6 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom";
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 
-import GuGuDan from "./GuGuDan";
+import GuGuDan from './GuGuDan';
 
-ReactDOM.render(<GuGuDan />, document.querySelector("#root"));
+ReactDOM.render(<GuGuDan />, document.querySelector('#root'));
