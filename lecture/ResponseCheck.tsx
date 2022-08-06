@@ -8,7 +8,7 @@ const ResponseCheck = () => {
   const timeout = useRef<number | null>(null);
   const startTime = useRef(0);
   const endTime = useRef(0);
-  const [color, setColor] = useState('red');
+  const [color, setColor] = useState('aqua');
 
   const onClickScreen = useCallback(() => {
     if (state === 'waiting') {
@@ -20,18 +20,19 @@ const ResponseCheck = () => {
       }, Math.floor(Math.random() * 1000) + 2000);
       setState('ready');
       setMessage('초록색이 되면 클릭하세요.');
+      setColor('red');
     } else if (state === 'ready') {
       if (timeout.current) {
         clearTimeout(timeout.current);
       }
-      setColor('red');
+      setColor('aqua');
       setState('waiting');
       setMessage('너무 성급하시군요! 초록색이 된 후에 클릭하세요.');
     } else if (state === 'now') {
       endTime.current = new Date().getTime();
       setState('waiting');
       setMessage('클릭해서 시작하세요.');
-      setColor('red');
+      setColor('aqua');
       setResult((prevResult) => {
         return [...prevResult, endTime.current - startTime.current];
       });
