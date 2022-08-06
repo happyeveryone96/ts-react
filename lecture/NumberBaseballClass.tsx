@@ -15,38 +15,37 @@ const getNumbers = () => {
 };
 
 interface State {
-  result: string,
-  value: string,
-  answer: number[],
-  tries: TryInfo[],
+  result: string;
+  value: string;
+  answer: number[];
+  tries: TryInfo[];
 }
 
-class NumberBaseball extends Component<{},State> {
+class NumberBaseball extends Component<{}, State> {
   state = {
     result: '',
     value: '',
     answer: getNumbers(),
     tries: [],
-  }
-
+  };
 
   onSubmitForm = (e: React.FormEvent) => {
-    const { value, tries, answer} = this.state;
+    const { value, tries, answer } = this.state;
     e.preventDefault();
     const input = this.inputRef.current;
     if (value === answer.join('')) {
       this.setState((prevState) => {
         return {
           result: '홈런!',
-          tries: [...prevState.tries, { try: value, result:'홈런!'}],
-        }
-      })
+          tries: [...prevState.tries, { try: value, result: '홈런!' }],
+        };
+      });
       alert('게임을 다시 실행합니다.');
       this.setState({
         value: '',
         answer: getNumbers(),
         tries: [],
-      })
+      });
       if (input) {
         input.focus();
       }
@@ -56,14 +55,14 @@ class NumberBaseball extends Component<{},State> {
       let ball = 0;
       if (tries.length >= 9) {
         this.setState({
-          result:`10번 넘게 틀려서 실패! 답은 ${answer.join(',')}였습니다!`
-        })
+          result: `10번 넘게 틀려서 실패! 답은 ${answer.join(',')}였습니다!`,
+        });
         alert('게임을 다시 시작합니다.');
         this.setState({
-         value:'',
-         answer: getNumbers(),
-         tries: [],
-        })
+          value: '',
+          answer: getNumbers(),
+          tries: [],
+        });
         if (input) {
           input.focus();
         }
@@ -77,23 +76,26 @@ class NumberBaseball extends Component<{},State> {
         }
         this.setState((prevState) => {
           return {
-            tries: [...prevState.tries, { try: value, result: `${strike} 스트라이크, ${ball} 볼입니다.` }],
+            tries: [
+              ...prevState.tries,
+              { try: value, result: `${strike} 스트라이크, ${ball} 볼입니다.` },
+            ],
             value: '',
-          }
-        })
+          };
+        });
         if (input) {
           input.focus();
         }
       }
     }
-  }
+  };
 
-  onChangeInput = (e: React.ChangeEvent<HTMLInputElement) => {
+  onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     console.log(this.state.answer);
     this.setState({
       value: e.target.value,
-    })
-  }
+    });
+  };
 
   inputRef = createRef<HTMLInputElement>();
 
@@ -119,8 +121,7 @@ class NumberBaseball extends Component<{},State> {
         </ul>
       </>
     );
-  };
   }
-  
+}
 
 export default NumberBaseball;
